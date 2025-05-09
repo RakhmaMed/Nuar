@@ -1,0 +1,86 @@
+/* Global styles */
+@font-face {
+  font-family: 'Excalifont';
+  src: url('./assets/Excalifont-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-color: #1a1a1a; /* Very dark background, almost black */
+  color: #e0c9a6; /* Default text color */
+  font-family: 'Excalifont', 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top for scrolling */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#app {
+  width: 100%;
+  max-width: 1000px; /* Max width for the content area */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles previously in App.vue, now global */
+.app-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 20px; /* Add some padding to header content */
+  box-sizing: border-box;
+}
+
+.app-title {
+  font-size: 4em; /* Large title */
+  color: #f5e5c5; /* Lighter color for title */
+  margin: 0;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.language-switcher {
+  font-size: 0.9em;
+  color: #a08c76; /* Muted color for language switcher */
+}
+
+.language-switcher span {
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.language-switcher span:hover {
+  color: #f5e5c5;
+}
+
+.game-modes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards in the grid */
+  gap: 0; /* Remove gap, margin is on cards */
+  width: 100%;
+}
+
+/* Button styles */
+button {
+  font-family: 'Excalifont', 'Arial', sans-serif;
+  font-size: 1em;
+  padding: 8px 16px;
+  border: 2px solid #e0c9a6;
+  background-color: transparent;
+  color: #e0c9a6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #e0c9a6;
+  color: #1a1a1a;
+}
