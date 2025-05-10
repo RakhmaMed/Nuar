@@ -2,24 +2,35 @@
   <div class="invite-card">
     <div class="invite-card-inner">
       <div class="invite-url-row">
-        <span class="invite-url-label">URL</span>
+        <span class="invite-url-label">{{ inviteUrl }}</span>
         <button class="copy-btn" @click="copyUrl">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         </button>
       </div>
     </div>
     <div class="invite-message">Share this link with your friend to play</div>
-    <button class="start-game-btn" @click="$emit('start')">Start game</button>
+    <button class="go-home-btn" @click="$emit('leave')">Go to home</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-const url = ref(window.location.href);
+const props = defineProps<{
+  roomId: string | null;
+}>();
+
+defineEmits(['leave']);
+
+const inviteUrl = computed(() => {
+  if (!props.roomId) return 'Creating room...';
+  return `${window.location.origin}?room=${props.roomId}`;
+});
 
 function copyUrl() {
-  navigator.clipboard.writeText(url.value);
+  if (props.roomId) {
+    navigator.clipboard.writeText(inviteUrl.value);
+  }
 }
 </script>
 
@@ -77,7 +88,7 @@ function copyUrl() {
   text-align: center;
   font-family: 'Excalifont', Arial, sans-serif;
 }
-.start-game-btn {
+.go-home-btn {
   font-family: 'Excalifont', Arial, sans-serif;
   font-size: 2.5em;
   background: none;
@@ -87,7 +98,7 @@ function copyUrl() {
   margin-top: 8px;
   transition: color 0.2s;
 }
-.start-game-btn:hover {
+.go-home-btn:hover {
   color: #f5e5c5;
 }
 </style> 
